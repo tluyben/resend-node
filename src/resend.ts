@@ -9,6 +9,8 @@ import { Domains } from './domains/domains';
 import { Emails } from './emails/emails';
 import { isResendErrorResponse } from './guards';
 import { ErrorResponse } from './interfaces';
+import fs from 'fs';
+import { basename } from 'path';
 
 const defaultBaseUrl = 'http://127.0.0.1:5005';
 const defaultUserAgent = `resend-node:${version}`;
@@ -71,6 +73,22 @@ export class Resend {
   }
 
   async post<T>(path: string, entity?: unknown, options: PostOptions = {}) {
+    if ((entity as any)?.attachments) {
+      (entity as any)?.attachments.map((e: any) => {
+        if (!e.content) {
+          if (e.filepath) {
+            e.content = fs.readFileSync(e.filepath);
+            e.filename = basename(e.filepath);
+          }
+          if (e.path) {
+            e.content = fs.readFileSync(e.path);
+          }
+        }
+        if (typeof e.content === 'object') {
+          e.content = e.content.toString('base64');
+        }
+      });
+    }
     const requestOptions = {
       method: 'POST',
       headers: this.headers,

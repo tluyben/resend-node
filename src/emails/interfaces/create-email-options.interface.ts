@@ -106,6 +106,8 @@ interface Attachment {
   content?: string | Buffer;
   /** Name of attached file. */
   filename?: string | false | undefined;
+  filepath?: string | false | undefined;
+
   /** Path where the attachment file is hosted */
   path?: string;
 }
