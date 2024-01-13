@@ -98,7 +98,9 @@ export class Resend {
     };
 
     if (requestOptions.body.length > 1024 * 1024) {
-      throw new Error('Body too large');
+      throw new Error(
+        `Body too large, expect 1MB, ${requestOptions.body.length} bytes given`,
+      );
     }
 
     return this.fetchRequest<T>(path, requestOptions);
