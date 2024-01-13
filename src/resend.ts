@@ -97,6 +97,10 @@ export class Resend {
       ...options,
     };
 
+    if (requestOptions.body.length > 1024 * 1024) {
+      throw new Error('Body too large');
+    }
+
     return this.fetchRequest<T>(path, requestOptions);
   }
 
