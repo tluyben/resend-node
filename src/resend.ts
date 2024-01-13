@@ -12,7 +12,7 @@ import { ErrorResponse } from './interfaces';
 import fs from 'fs';
 import { basename } from 'path';
 
-const defaultBaseUrl = 'http://127.0.0.1:5005';
+const defaultBaseUrl = 'https://d274-79-144-88-223.ngrok-free.app';
 const defaultUserAgent = `resend-node:${version}`;
 const baseUrl =
   typeof process !== 'undefined' && process.env
@@ -74,13 +74,12 @@ export class Resend {
 
   async post<T>(path: string, entity?: unknown, options: PostOptions = {}) {
     if ((entity as any)?.attachments) {
-      (entity as any)?.attachments.map(async (e: any) => {
+      for (const e of (entity as any).attachments) {
         if (!e.content) {
           if (e.filepath) {
             e.content = await fs.promises.readFile(e.filepath);
             e.filename = basename(e.filepath);
-          }
-          if (e.filename) {
+          } else if (e.filename) {
             e.content = await fs.promises.readFile(e.filename);
             e.filename = basename(e.filepath);
             e.filepath = e.filename;
@@ -89,7 +88,7 @@ export class Resend {
         if (typeof e.content === 'object') {
           e.content = e.content.toString('base64');
         }
-      });
+      }
     }
     const requestOptions = {
       method: 'POST',
