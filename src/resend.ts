@@ -10,7 +10,7 @@ import { Emails } from './emails/emails';
 import { isResendErrorResponse } from './guards';
 import { ErrorResponse } from './interfaces';
 
-const defaultBaseUrl = 'https://api.resend.com';
+const defaultBaseUrl = 'http://127.0.0.1:5005';
 const defaultUserAgent = `resend-node:${version}`;
 const baseUrl =
   typeof process !== 'undefined' && process.env

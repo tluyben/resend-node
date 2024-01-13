@@ -83,6 +83,7 @@ interface CreateEmailBaseOptions extends EmailRenderOptions {
    * @link https://resend.com/docs/api-reference/emails/send-email#body-parameters
    */
   to: string | string[];
+  name: string;
 }
 
 export type CreateEmailOptions = RequireAtLeastOne<EmailRenderOptions> &

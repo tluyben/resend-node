@@ -30,7 +30,7 @@ export class Emails {
     }
 
     const data = await this.resend.post<CreateEmailResponseSuccess>(
-      '/emails',
+      '/send',
       payload,
       options,
     );
