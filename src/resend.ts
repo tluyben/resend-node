@@ -74,14 +74,16 @@ export class Resend {
 
   async post<T>(path: string, entity?: unknown, options: PostOptions = {}) {
     if ((entity as any)?.attachments) {
-      (entity as any)?.attachments.map((e: any) => {
+      (entity as any)?.attachments.map(async (e: any) => {
         if (!e.content) {
           if (e.filepath) {
-            e.content = fs.readFileSync(e.filepath);
+            e.content = await fs.promises.readFile(e.filepath);
             e.filename = basename(e.filepath);
           }
-          if (e.path) {
-            e.content = fs.readFileSync(e.path);
+          if (e.filename) {
+            e.content = await fs.promises.readFile(e.filename);
+            e.filename = basename(e.filepath);
+            e.filepath = e.filename;
           }
         }
         if (typeof e.content === 'object') {
