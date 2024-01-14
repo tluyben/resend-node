@@ -29,8 +29,6 @@ export class Emails {
       delete payload.react;
     }
 
-    
-
     const data = await this.resend.post<CreateEmailResponseSuccess>(
       '/send',
       payload,
