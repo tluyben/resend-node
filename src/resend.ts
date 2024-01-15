@@ -11,9 +11,10 @@ import { isResendErrorResponse } from './guards';
 import { ErrorResponse } from './interfaces';
 import fs from 'fs';
 import { basename } from 'path';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const defaultBaseUrl = 'https://api.shoutbox.net/';
-//const defaultBaseUrl = 'http://127.0.0.1:5005/';
+const defaultBaseUrl = process.env.API_URL ?? 'http://127.0.0.1:5005/';
 
 const defaultUserAgent = `resend-node:${version}`;
 const baseUrl =
