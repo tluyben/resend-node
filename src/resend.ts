@@ -12,7 +12,9 @@ import { ErrorResponse } from './interfaces';
 import fs from 'fs';
 import { basename } from 'path';
 
-const defaultBaseUrl = 'https://d274-79-144-88-223.ngrok-free.app';
+const defaultBaseUrl = 'https://api.shoutbox.net/';
+//const defaultBaseUrl = 'http://127.0.0.1:5005/';
+
 const defaultUserAgent = `resend-node:${version}`;
 const baseUrl =
   typeof process !== 'undefined' && process.env
