@@ -23,7 +23,7 @@ resend.emails.send(data.email).then((yes, no) => {
 });
 
 // cleanup
-if (data.email.attachments.length > 0) {
+if (data.email.attachments && data.email.attachments.length > 0) {
   data.email.attachments.forEach((attachment) => {
     fs.unlinkSync(attachment.filepath);
   });
