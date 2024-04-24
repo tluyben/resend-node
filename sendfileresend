@@ -1,3 +1,4 @@
 #!/bin/sh
 
+cd ../resend-node
 node ./sendfileresend.js $@
