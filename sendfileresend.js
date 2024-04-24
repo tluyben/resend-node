@@ -1,4 +1,5 @@
-const { Resend } = require('./src');
+const { Resend } = require('./dist');
+const fs = require('fs');
 
 const file = process.argv[2];
 
@@ -16,7 +17,7 @@ const resend = new Resend(data.user);
 resend.emails
   .send(data.email)
   .catch(console.error)
-  .them(() => {
+  .then(() => {
     console.log('Email sent');
   });
 
