@@ -61,7 +61,6 @@ export class Resend {
     options = {},
   ): Promise<{ data: T | null; error: ErrorResponse | null }> {
     const response = await fetch(`${baseUrl}${path}`, options);
-
     if (!response.ok) {
       const error = await response.json();
       if (isResendErrorResponse(error)) {
