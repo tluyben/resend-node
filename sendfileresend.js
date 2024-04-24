@@ -14,12 +14,13 @@ const data = JSON.parse(content);
 const resend = new Resend(data.user);
 
 // send the email;
-resend.emails
-  .send(data.email)
-  .catch(console.error)
-  .then(() => {
-    console.log('Email sent');
-  });
+resend.emails.send(data.email).then((yes, no) => {
+  if (no) {
+    console.error(no);
+  } else {
+    console.log('Email sent ', yes);
+  }
+});
 
 // cleanup
 if (data.email.attachments.length > 0) {
