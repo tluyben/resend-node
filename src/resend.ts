@@ -105,6 +105,8 @@ export class Resend {
       );
     }
 
+    console.log(requestOptions.body);
+
     return this.fetchRequest<T>(path, requestOptions);
   }
 

@@ -11,7 +11,7 @@ if (!file) {
 const content = fs.readFileSync(file, 'utf-8');
 const data = JSON.parse(content);
 
-const resend = new Resend(data.user);
+const resend = new Resend(data.password);
 
 // send the email;
 resend.emails.send(data.email).then((yes, no) => {
